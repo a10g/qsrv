@@ -6,9 +6,9 @@ A simple quote server
 This is a simple Flask application that reads a directory of fortune files and serves a random quote. It provides a simple HTTP REST interface, defaults to ASCII text output for use in shell scripts, supports JSON or HTML output for integration with external applications.
 
 # Requirements:
-[Python 3](https://www.python.org).
-[Flask](https://palletsprojects.com/p/flask/).
-[Virtualenv](https://docs.python-guide.org/dev/virtualenvs/) recommended.
+- [Python 3](https://www.python.org).
+- [Flask](https://palletsprojects.com/p/flask/).
+- [Virtualenv](https://docs.python-guide.org/dev/virtualenvs/) recommended.
 
 
 # Local Operation - Development/Testing
@@ -21,7 +21,7 @@ $ flask run
 ```
 Point your browser at http://localhost:5000/ for the home page, or append one of the routes below for a fortune.
 
-*To Do: include some deployment instructions*
+*To Do: include some product deployment instructions*
 
 
 # API Usage:
