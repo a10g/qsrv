@@ -33,7 +33,12 @@ def parse_fortunes(fortune_file):
 
 
 if __name__ == "__main__":
+    import random
     fortune_path = 'fortunes'
     all_fortunes = get_fortunes(fortune_path)
     #fortune = random.choice(all_fortunes[fortune_file])
-    print(all_fortunes)
+    db = random.choice(list(all_fortunes.keys()))
+    fortune = random.choice(all_fortunes[db])
+    print("Random fortune")
+    print("Database: " + db)
+    print("Fortune: " + fortune)

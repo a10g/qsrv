@@ -23,13 +23,19 @@ def api():
 
 @app.route("/api/fortune/random")
 def get_random_fortune():
-        return Response(all_fortunes, mimetype='text/plain')
+        db = random.choice(list(all_fortunes.keys()))
+        fortune = random.choice(all_fortunes[db])
+        return Response(fortune, mimetype='text/plain')
 
 @app.route("/api/fortune/<fortune_file>")
 def get_random_fortune_from_file(fortune_file):
         fortune = random.choice(all_fortunes[fortune_file])
         return Response(fortune, mimetype='text/plain')
 
+@app.route("/api/fortune/list")
+def list_all_fortune_files():
+    list_of_fortune_dbs = all_fortunes.keys()
+    return Response(list_of_fortune_dbs)
 
 if __name__ == "__main__":
     app.run(debug=True)
