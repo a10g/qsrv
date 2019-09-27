@@ -2,24 +2,38 @@
 
 # A simple script to parse a BSD fortune file format without the strfile(8) index.
 
+from os import listdir
+from os.path import isfile, join
 
+
+def get_fortunes(fortune_path):
+    available_fortunes = get_fortune_list(fortune_path)
+    all_fortunes = {}
+    for fortune_file in available_fortunes:
+        path_to_fortunes = fortune_path + "/" + fortune_file
+        fortunes = parse_fortunes(path_to_fortunes)
+        all_fortunes.update({fortune_file:fortunes})
+    return all_fortunes
+
+def get_fortune_list(fortune_path):
+    fortune_list = [f for f in listdir(fortune_path) if isfile(join(fortune_path, f))]
+    return fortune_list
 
 def parse_fortunes(fortune_file):
-    quote_list = []
-    with open(fortune_file) as f:
-        quote = ""
-        for line in f:
-            line = line.rstrip()
-            if line != "%":
-                quote = quote + line
+    fortunes = []
+    with open(fortune_file) as fi:
+        fortune = ""
+        for line in fi:
+            if line.rstrip() != "%":
+                fortune = fortune + line
             else:
-                quote_list.append(quote)
-                quote = ""
-    return quote_list
+                fortunes.append(fortune)
+                fortune = ""
+    return fortunes
+
 
 if __name__ == "__main__":
-    quote_list = []
-    quote_path = 'fortunes'
-    fortune_file = quote_path + '/quotes'
-    parse_fortunes(fortune_file)
-    print(quote_list)
+    fortune_path = 'fortunes'
+    all_fortunes = get_fortunes(fortune_path)
+    #fortune = random.choice(all_fortunes[fortune_file])
+    print(all_fortunes)

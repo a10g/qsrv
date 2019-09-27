@@ -3,14 +3,15 @@
 from flask import Flask, request, Response
 import qsrv_func as q
 
-# configs - move to config.py eventually
-fortune_path = 'fortunes/'
-fortune_file = 'quotes'
+import random
 
-all_fortunes = fortune_path + fortune_file
-quotes = q.parse_fortunes(all_fortunes)
+# configs - move to config.py eventually
+fortune_path = 'fortunes'
+
 
 app = Flask(__name__)
+
+all_fortunes = q.get_fortunes(fortune_path)
 
 @app.route("/")
 def home():
@@ -20,18 +21,18 @@ def home():
 def api():
         return "API Statistics"
 
-@app.route("/api/quote")
-def quote():
-        return Response(quotes, mimetype='text/plain')
+@app.route("/api/fortune/random")
+def get_random_fortune():
+        return Response(all_fortunes, mimetype='text/plain')
 
-@app.route("/api/quote/monarch")
-def quote_monarch():
-        return "A Monarch quote"
+@app.route("/api/fortune/<fortune_file>")
+def get_random_fortune_from_file(fortune_file):
+        fortune = random.choice(all_fortunes[fortune_file])
+        return Response(fortune, mimetype='text/plain')
 
 
 if __name__ == "__main__":
     app.run(debug=True)
-
 
 
 
