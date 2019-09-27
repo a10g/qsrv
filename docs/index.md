@@ -3,13 +3,13 @@ A simple quote server
 
 This is a simple Flask application that reads a directory of fortune files and serves a random quote. It provides a simple HTTP REST interface, defaults to ASCII text output for use in shell scripts, supports JSON or HTML output for integration with external applications.
 
-# Requirements:
+## Requirements:
 - [Python 3](https://www.python.org).
 - [Flask](https://palletsprojects.com/p/flask/).
 - [Virtualenv](https://docs.python-guide.org/dev/virtualenvs/) recommended.
 
 
-# Local Operation - Development/Testing
+## Local Operation - Development/Testing
 ```
 $ git clone [url]
 $ cd qsrv_func
@@ -20,7 +20,7 @@ $ flask run
 Point your browser at http://localhost:5000/ for the home page, or append one of the routes below for a fortune.
 
 
-# API Usage:
+## API Usage:
 
 Send an HTTP GET to the desired URI.
 
@@ -45,7 +45,7 @@ Returns a fortune from the selected database.
 List all fortunes in database
 ```
 
-## Examples
+### Examples
 ```
 Get random fortune from terminal:
 curl http://localhost:5000/api/fortune/random
