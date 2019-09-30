@@ -1,0 +1,9 @@
+[root@c ~]# cat /etc/systemd/system/gunicorn.socket 
+[Unit]
+Description=gunicorn socket
+
+[Socket]
+ListenStream=/tmp/gunicorn.sock
+
+[Install]
+WantedBy=sockets.target

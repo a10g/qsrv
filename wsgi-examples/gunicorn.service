@@ -1,0 +1,19 @@
+[Unit]
+Description=gunicorn daemon
+Requires=gunicorn.socket
+After=network.target
+
+[Service]
+PIDFile=/var/run/gunicorn.pid
+User=nginx
+Group=nginx
+RuntimeDirectory=gunicorn
+#WorkingDirectory=/usr/share/nginx/html/belly
+WorkingDirectory=/usr/share/nginx/html/qsrv
+ExecStart=/var/env/belly/bin/gunicorn -w 4 --bind unix:/tmp/gunicorn.sock app:app
+ExecReload=/usr/bin/kill -s HUP $MAINPID
+ExecStop=/usr/bin/kill -s TERM $MAINPID
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
